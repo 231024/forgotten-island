@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-	[SerializeField] private DogUnit _player;
+	[SerializeField] private Unit _player;
 
 	public event Action<Vector3> GroundTouched ;
 

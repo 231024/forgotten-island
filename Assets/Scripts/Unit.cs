@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class DogUnit : MonoBehaviour, IProduct
+public class Unit : MonoBehaviour, IProduct
 {
 	private static readonly int Speed = Animator.StringToHash("Speed");
 	private static readonly int Attack = Animator.StringToHash("Attack");
@@ -60,4 +60,6 @@ public class DogUnit : MonoBehaviour, IProduct
 	{
 		_agent.SetDestination(targetPos);
 	}
+
+	public GameObject GO => gameObject;
 }

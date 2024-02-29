@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-	[SerializeField] private ShopController _shop;
+	[SerializeField] private ShopPresenter _shop;
+	[SerializeField] private ShopView _view;
 	[SerializeField] private Cabin _cabin;
+	[SerializeField] private UnitFactory _factory;
 
 	private void Awake()
 	{
@@ -17,6 +19,6 @@ public class MenuController : MonoBehaviour
 
 	private void OnCabinTouched()
 	{
-		Instantiate(_shop, transform);
+		Instantiate(_shop, transform).Inject(_factory);
 	}
 }
