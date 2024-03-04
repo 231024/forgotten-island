@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Pool;
+using Object = UnityEngine.Object;
 
 public class UnitPool
 {
@@ -7,6 +9,8 @@ public class UnitPool
 	private string _id;
 	private Unit _prefab;
 
+	public static event Action EventInstantiate;
+	
 	public UnitPool(string id, Unit prefab, int capacity = 10, int maxCapacity = 100)
 	{
 		_id = id;
@@ -28,6 +32,7 @@ public class UnitPool
 	{
 		obj.GO.transform.position = Vector3.zero;
 		obj.GO.SetActive(true);
+		EventInstantiate?.Invoke();
 	}
 
 	private IProduct Create()
