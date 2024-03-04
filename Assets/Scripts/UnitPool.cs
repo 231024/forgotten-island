@@ -28,7 +28,6 @@ public class UnitPool
 	{
 		obj.GO.transform.position = Vector3.zero;
 		obj.GO.SetActive(true);
-		obj.GO.GetComponent<Rigidbody>().AddForce(Vector3.up * 300);
 	}
 
 	private IProduct Create()

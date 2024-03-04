@@ -44,6 +44,23 @@ namespace Radio
 			{
 				_calculator.Undo();
 			}
+			
+			if (Input.GetKeyDown(KeyCode.C))
+			{
+				if (Input.GetKey(KeyCode.LeftCommand))
+				{
+					Clipboard.Instance.SetText("Special sentence for clipboard testing");
+				}
+			}
+			
+			if (Input.GetKeyDown(KeyCode.V))
+			{
+				if (Input.GetKey(KeyCode.LeftCommand))
+				{
+					var text = Clipboard.Instance.GetText();
+					Debug.Log($"Output: {text}");
+				}
+			}
 		}
 
 		private void OnDestroy()
