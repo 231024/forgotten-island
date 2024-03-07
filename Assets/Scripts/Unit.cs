@@ -6,9 +6,17 @@ public class Unit : MonoBehaviour, IProduct
 	private static readonly int Speed = Animator.StringToHash("Speed");
 	private static readonly int Attack = Animator.StringToHash("Attack");
 
+	public int Weight => _weight;
+	private int _weight;
+
 	[SerializeField] private NavMeshAgent _agent;
 	[SerializeField] private Animator _animator;
 	[SerializeField] private float _attackRate;
+
+	public void SetWeight(int tmpWeight)
+	{
+		_weight = tmpWeight;
+	}
 
 	private Ground[] _grounds;
 	private float _lastHit;

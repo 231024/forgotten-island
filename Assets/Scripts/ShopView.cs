@@ -22,39 +22,17 @@ public class ShopView : MonoBehaviour
 			}
 		}
 
-		// create items for shop by pool counts
-		
-		// model.WarriorPools.Count
 		foreach(var pool in model.WarriorPools)
 			{
-				// _warriorKinds.Add(key);
-				// Debug.Log("");
+
 				var item = Instantiate(_initialItem, _parent);
 				item.gameObject.SetActive(true);
 				item.SetId(pool.Key);
 				item.SetBuyButtonText(pool.Key);
-				// item.SetIcon(pool.Value
-				// pool.Value.
+				item.SetImage(pool.Value.Avatar);
 
 				item.SetCallback(OnItemBought);
 			}
-
-
-		// for (var i = 0; i != model.WarriorCount; i++)
-		// {
-		// 	var item = Instantiate(_initialItem, _parent);
-		// 	item.gameObject.SetActive(true);
-		// 	item.SetId("dog");
-		// 	// item.SetId(model.WarriorKinds[i]);
-		// 	// item.SetId(model.WarriorPools.);
-		// 	// item.SetImage()
-		// 	item.SetCallback(OnItemBought);
-		// }
-
-		// foreach(string key in model.WarriorPools)
-		// 	{
-		// 		_warriorKinds.Add(key);
-		// 	}
 	}
 
 	public event Action CloseButtonClicked;

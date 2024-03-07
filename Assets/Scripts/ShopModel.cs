@@ -4,29 +4,16 @@ using System.Collections.Generic;
 
 public class ShopModel
 {
-	private int _kindCount;
 	private int _gold;
-	private List<string> _warriorKinds;
+	private int _villageCapacity;
 	private Dictionary<string, UnitPool> _warriorPools;
 
-	// public ShopModel(int gold, int unitCount)
-	// {
-	// 	_gold = gold;
-	// 	_unitCount = unitCount;
-	// }
 
-	// public ShopModel(int gold, int unitCount, List<string> warriorKinds)
-	// {
-	// 	_gold = gold;
-	// 	_kindCount = unitCount;
-	// 	_warriorKinds = warriorKinds; 
-	// }
-
-	public ShopModel(int gold, int unitCount, Dictionary<string, UnitPool> warriorPools)
+	public ShopModel(int gold, Dictionary<string, UnitPool> warriorPools, int villageCapacity)
 	{
 		_gold = gold;
-		_kindCount = unitCount;
 		_warriorPools = warriorPools;
+		_villageCapacity = villageCapacity;
 	}
 
 
@@ -45,34 +32,21 @@ public class ShopModel
 		}
 	}
 
-	public int WarriorCount
+		public int VillageCapacity
 	{
-		get => _kindCount;
+		get => _villageCapacity;
 		set
 		{
-			if (_kindCount == value)
+			if (_villageCapacity == value)
 			{
 				return;
 			}
 
-			_kindCount = value;
+			_villageCapacity = value;
 			DataChanged?.Invoke();
 		}
 	}
 
-	public List<string> WarriorKinds
-	{
-		get => _warriorKinds;
-		set
-		{
-			if (_warriorKinds == value)
-			{
-				return;
-			}
-			_warriorKinds = value;
-			DataChanged?.Invoke();
-		}
-	}
 
 	public Dictionary<string, UnitPool> WarriorPools
 	{

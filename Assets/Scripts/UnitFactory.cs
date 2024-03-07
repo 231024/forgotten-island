@@ -11,13 +11,28 @@ public class UnitFactory : Factory
 	{
 		foreach (var entry in _config.Entries)
 		{
-			// Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab);
-			Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab, entry.Sprite);
+			Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab, entry.Sprite, entry.Weight);
 		}
 	}
 
 	public override IProduct GetProduct(string id)
 	{
 		return Pools[id].Get();
+	}
+
+	public bool CheckSpaceForId(int capacity, string id)
+	{
+		var product = Pools[id].Get();
+
+		if(product.Weight > capacity)
+		{
+			Pools[id].Release(product);
+			return false;
+		}
+		else
+		{
+			Pools[id].Release(product);
+			return true;
+		}
 	}
 }

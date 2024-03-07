@@ -1,12 +1,18 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
+
+
+
 	[SerializeField] private Image _icon;
 	[SerializeField] private TMP_Text _price;
+
+
 
 	private Action<string> _buyClicked;
 
@@ -22,11 +28,6 @@ public class ShopItem : MonoBehaviour
 		GetComponentInChildren<TextMeshProUGUI>().text = text;
 	}
 
-	public void SetIcon(Image icon)
-	{
-		_icon = icon;
-	}
-
 
 	public void SetCallback(Action<string> value)
 	{
@@ -37,9 +38,9 @@ public class ShopItem : MonoBehaviour
 	{
 		_price.text = value;
 	}
-		public void SetImage(Image value)
+		public void SetImage(Sprite value)
 	{
-		_icon = value;
+		_icon.sprite = value;
 	}
 
 	public void OnBuyButtonClick()
