@@ -11,11 +11,13 @@ public class Unit : MonoBehaviour, IProduct
 	[SerializeField] private float _attackRate;
 
 	private Ground[] _grounds;
+	private Tree[] _trees;
 	private float _lastHit;
 
 	private void Awake()
 	{
 		_grounds = FindObjectsOfType<Ground>();
+		_trees = FindObjectsOfType<Tree>();
 	}
 
 	private void Update()
@@ -28,6 +30,11 @@ public class Unit : MonoBehaviour, IProduct
 		foreach (var ground in _grounds)
 		{
 			ground.GroundTouched += MoveTo;
+		}
+
+		foreach (var tree in _trees)
+		{
+			tree.TreeTouched += MoveTo;
 		}
 	}
 
