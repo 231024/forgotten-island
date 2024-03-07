@@ -15,19 +15,19 @@ public class ShopModel
 	// 	_unitCount = unitCount;
 	// }
 
-	public ShopModel(int gold, int unitCount, List<string> warriorKinds)
-	{
-		_gold = gold;
-		_kindCount = unitCount;
-		_warriorKinds = warriorKinds; 
-	}
-
-	// public ShopModel(int gold, int unitCount, Dictionary<string, UnitPool> warriorPools)
+	// public ShopModel(int gold, int unitCount, List<string> warriorKinds)
 	// {
 	// 	_gold = gold;
 	// 	_kindCount = unitCount;
-	// 	_warriorPools = warriorPools;
+	// 	_warriorKinds = warriorKinds; 
 	// }
+
+	public ShopModel(int gold, int unitCount, Dictionary<string, UnitPool> warriorPools)
+	{
+		_gold = gold;
+		_kindCount = unitCount;
+		_warriorPools = warriorPools;
+	}
 
 
 	public int Gold

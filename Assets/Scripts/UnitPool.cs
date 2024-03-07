@@ -9,12 +9,22 @@ public class UnitPool
 	private string _id;
 	private Unit _prefab;
 
+	private Sprite _sprite;
+
 	public static event Action EventInstantiate;
 	
-	public UnitPool(string id, Unit prefab, int capacity = 10, int maxCapacity = 100)
+	// public UnitPool(string id, Unit prefab, int capacity = 10, int maxCapacity = 100)
+	// {
+	// 	_id = id;
+	// 	_prefab = prefab;
+	// 	_pool = new ObjectPool<IProduct>(Create, Get, Release, Destroy, true, capacity, maxCapacity);
+	// }
+
+		public UnitPool(string id, Unit prefab, Sprite sprite, int capacity = 10, int maxCapacity = 100)
 	{
 		_id = id;
 		_prefab = prefab;
+		_sprite = sprite;
 		_pool = new ObjectPool<IProduct>(Create, Get, Release, Destroy, true, capacity, maxCapacity);
 	}
 

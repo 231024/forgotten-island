@@ -11,7 +11,8 @@ public class UnitFactory : Factory
 	{
 		foreach (var entry in _config.Entries)
 		{
-			Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab);
+			// Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab);
+			Pools[entry.ID] = new UnitPool(entry.ID, entry.Prefab, entry.Sprite);
 		}
 	}
 

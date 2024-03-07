@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "1024/Shop Config", fileName = "ShopConfig")]
@@ -15,7 +17,9 @@ public class ShopEntry
 {
 	[SerializeField] private string _id;
 	[SerializeField] private Unit _prefab;
+	[SerializeField] private Sprite _sprite;
 
 	public string ID => _id;
 	public Unit Prefab => _prefab;
+	public Sprite Sprite => _sprite;
 }

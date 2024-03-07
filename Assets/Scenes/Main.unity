@@ -7427,7 +7427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shop: {fileID: 7031022301700377172, guid: dbf8565714fc14e52ae5228f7f321a56, type: 3}
-  _view: {fileID: 4119710446846228441, guid: dbf8565714fc14e52ae5228f7f321a56, type: 3}
   _cabin: {fileID: 1988929855}
   _factory: {fileID: 1717570382}
 --- !u!1001 &824061909

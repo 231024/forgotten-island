@@ -21,8 +21,8 @@ public class ShopPresenter : MonoBehaviour
 				_warriorKinds.Add(key);
 			}
 
-		_model = new ShopModel(100, _factory.Pools.Count, _warriorKinds);
-		// _model = new ShopModel(100, _factory.Pools.Count, _factory.Pools);
+		// _model = new ShopModel(100, _factory.Pools.Count, _warriorKinds);
+		_model = new ShopModel(100, _factory.Pools.Count, _factory.Pools);
 
 		_model.DataChanged += ModelOnDataChanged;
 

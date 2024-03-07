@@ -17,6 +17,17 @@ public class ShopItem : MonoBehaviour
 		_id = id;
 	}
 
+	public void SetBuyButtonText(string text)
+	{
+		GetComponentInChildren<TextMeshProUGUI>().text = text;
+	}
+
+	public void SetIcon(Image icon)
+	{
+		_icon = icon;
+	}
+
+
 	public void SetCallback(Action<string> value)
 	{
 		_buyClicked = value;
