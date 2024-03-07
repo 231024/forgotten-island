@@ -21,13 +21,21 @@ public class ShopView : MonoBehaviour
 			}
 		}
 
-		for (var i = 0; i != model.DogCount; i++)
+		for (var i = 0; i != model.WarriorCount; i++)
 		{
 			var item = Instantiate(_initialItem, _parent);
 			item.gameObject.SetActive(true);
-			item.SetId("dog");
+			// item.SetId("dog");
+			item.SetId(model.WarriorKinds[i]);
+			// item.SetId(model.WarriorPools.Keys);
+			// item.SetImage()
 			item.SetCallback(OnItemBought);
 		}
+
+		// foreach(string key in model.WarriorPools)
+		// 	{
+		// 		_warriorKinds.Add(key);
+		// 	}
 	}
 
 	public event Action CloseButtonClicked;

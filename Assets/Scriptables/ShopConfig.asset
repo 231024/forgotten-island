@@ -18,3 +18,6 @@ MonoBehaviour:
       type: 3}
   - _id: slime
     _prefab: {fileID: 93649402165800192, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
+  - _id: turtle
+    _prefab: {fileID: -5421131922431176348, guid: e2aafa8770d34a9591b41bedf4e318ba,
+      type: 3}

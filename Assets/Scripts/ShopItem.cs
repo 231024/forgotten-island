@@ -26,6 +26,10 @@ public class ShopItem : MonoBehaviour
 	{
 		_price.text = value;
 	}
+		public void SetImage(Image value)
+	{
+		_icon = value;
+	}
 
 	public void OnBuyButtonClick()
 	{

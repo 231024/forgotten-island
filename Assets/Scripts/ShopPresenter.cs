@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ShopPresenter : MonoBehaviour
@@ -11,7 +12,18 @@ public class ShopPresenter : MonoBehaviour
 
 	private void Start()
 	{
-		_model = new ShopModel(100, _factory.Pools.Count);
+
+
+		List<string> _warriorKinds = new List<string>();
+
+		foreach(string key in _factory.Pools.Keys)
+			{
+				_warriorKinds.Add(key);
+			}
+
+		_model = new ShopModel(100, _factory.Pools.Count, _warriorKinds);
+		// _model = new ShopModel(100, _factory.Pools.Count, _factory.Pools);
+
 		_model.DataChanged += ModelOnDataChanged;
 
 		_view.Refresh(_model);
@@ -42,7 +54,7 @@ public class ShopPresenter : MonoBehaviour
 	{
 		_factory.GetProduct(id);
 
-		_model.DogCount--;
+		// _model.WarriorCount--;
 		_model.Gold -= 20;
 	}
 
