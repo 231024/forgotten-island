@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopPresenter : MonoBehaviour
@@ -8,17 +6,21 @@ public class ShopPresenter : MonoBehaviour
 	[SerializeField] private ShopView _view;
 
 	private UnitFactory _factory;
+	private WalletPresenter _walletPresenter;
 
-	private ShopModel _model;
+	private ShopModel _shopModel;
+
+	private const int ItemPrice = 20;
+	private const int VillageCapacity = 20;
+
+	public event Action<string> ItemBought;
 
 	private void Start()
 	{
+		_shopModel = new ShopModel(_factory.Pools, VillageCapacity);
+		_shopModel.DataChanged += ModelOnDataChanged;
 
-		_model = new ShopModel(100, _factory.Pools, 20);
-
-		_model.DataChanged += ModelOnDataChanged;
-
-		_view.Refresh(_model);
+		_view.Refresh(_shopModel);
 
 		_view.CloseButtonClicked += OnViewCloseButtonClicked;
 		_view.ItemBought += OnItemBought;
@@ -30,28 +32,29 @@ public class ShopPresenter : MonoBehaviour
 		_view.ItemBought -= OnItemBought;
 	}
 
-	public void Inject(UnitFactory factory)
-	{
+	public void Inject(UnitFactory factory) =>
 		_factory = factory;
-	}
+
+	public void Inject(WalletPresenter walletPresenter) =>
+		_walletPresenter = walletPresenter;
 
 	private void ModelOnDataChanged()
 	{
-		_view.Refresh(_model);
+		_view.Refresh(_shopModel);
 	}
-
-	public event Action<string> ItemBought;
 
 	private void OnItemBought(string id)
 	{
-		if(_factory.CheckSpaceForId(_model.VillageCapacity, id))
-		{
-			var product = _factory.GetProduct(id);
-			_model.VillageCapacity -= product.Weight;
-			Debug.Log(_model.VillageCapacity);
-			_model.Gold -= 20;
-		}
-		
+		if (!_factory.CheckSpaceForId(_shopModel.VillageCapacity, id))
+			return;
+
+		if (!_walletPresenter.WithdrawGold(ItemPrice))
+			return;
+
+		var product = _factory.GetProduct(id);
+		_shopModel.VillageCapacity -= product.Weight;
+
+		Debug.Log(_shopModel.VillageCapacity);
 	}
 
 	private void OnViewCloseButtonClicked()

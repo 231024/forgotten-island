@@ -1,17 +1,13 @@
 using System;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ShopView : MonoBehaviour
 {
 	[SerializeField] private ShopItem _initialItem;
 	[SerializeField] private RectTransform _parent;
-	[SerializeField] private TMP_Text _wallet;
 
 	public void Refresh(ShopModel model)
 	{
-		_wallet.text = model.Gold.ToString();
 
 		for (var i = 0; i < _parent.childCount; i++)
 		{
@@ -22,17 +18,16 @@ public class ShopView : MonoBehaviour
 			}
 		}
 
-		foreach(var pool in model.WarriorPools)
-			{
+		foreach (var pool in model.WarriorPools)
+		{
+			var item = Instantiate(_initialItem, _parent);
+			item.gameObject.SetActive(true);
+			item.SetId(pool.Key);
+			item.SetBuyButtonText(pool.Key);
+			item.SetImage(pool.Value.Avatar);
 
-				var item = Instantiate(_initialItem, _parent);
-				item.gameObject.SetActive(true);
-				item.SetId(pool.Key);
-				item.SetBuyButtonText(pool.Key);
-				item.SetImage(pool.Value.Avatar);
-
-				item.SetCallback(OnItemBought);
-			}
+			item.SetCallback(OnItemBought);
+		}
 	}
 
 	public event Action CloseButtonClicked;
