@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -21,13 +22,17 @@ public class ShopView : MonoBehaviour
 			}
 		}
 
-		for (var i = 0; i != model.DogCount; i++)
-		{
-			var item = Instantiate(_initialItem, _parent);
-			item.gameObject.SetActive(true);
-			item.SetId("dog");
-			item.SetCallback(OnItemBought);
-		}
+		foreach(var pool in model.WarriorPools)
+			{
+
+				var item = Instantiate(_initialItem, _parent);
+				item.gameObject.SetActive(true);
+				item.SetId(pool.Key);
+				item.SetBuyButtonText(pool.Key);
+				item.SetImage(pool.Value.Avatar);
+
+				item.SetCallback(OnItemBought);
+			}
 	}
 
 	public event Action CloseButtonClicked;

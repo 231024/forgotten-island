@@ -214,6 +214,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pieces: 5
+  _wood: 3
+  _chopped_tree: {fileID: 1672552581140272501, guid: cebd0c9736e83ed408dcf8a7dbc15cc7,
+    type: 3}
 --- !u!135 &4064094454624680117
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -233,5 +236,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.4
-  m_Center: {x: 0, y: 2.24, z: 0}
+  m_Radius: 1.5473588
+  m_Center: {x: 0.012356281, y: 2.24, z: 0.13500166}
