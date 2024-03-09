@@ -14,7 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entries:
   - _id: dog
+    _weight: 1
     _prefab: {fileID: 4458754861531371107, guid: 214e08cd5e5d74c458e2a81b7ec2c84c,
       type: 3}
+    _sprite: {fileID: 21300000, guid: b8508bbb52cdd004db25e131592624e1, type: 3}
   - _id: slime
+    _weight: 2
     _prefab: {fileID: 93649402165800192, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
+    _sprite: {fileID: 21300000, guid: c802ed8e606f0b84b9054cfe6b376395, type: 3}
+  - _id: turtle
+    _weight: 5
+    _prefab: {fileID: -5421131922431176348, guid: e2aafa8770d34a9591b41bedf4e318ba,
+      type: 3}
+    _sprite: {fileID: 21300000, guid: 4186a1b2d06897142a68c8ee0c86eb79, type: 3}

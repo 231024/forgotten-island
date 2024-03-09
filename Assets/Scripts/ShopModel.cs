@@ -1,15 +1,21 @@
 using System;
+using System.Collections.Generic;
+
 
 public class ShopModel
 {
-	private int _unitCount;
 	private int _gold;
+	private int _villageCapacity;
+	private Dictionary<string, UnitPool> _warriorPools;
 
-	public ShopModel(int gold, int unitCount)
+
+	public ShopModel(int gold, Dictionary<string, UnitPool> warriorPools, int villageCapacity)
 	{
 		_gold = gold;
-		_unitCount = unitCount;
+		_warriorPools = warriorPools;
+		_villageCapacity = villageCapacity;
 	}
+
 
 	public int Gold
 	{
@@ -26,17 +32,32 @@ public class ShopModel
 		}
 	}
 
-	public int DogCount
+		public int VillageCapacity
 	{
-		get => _unitCount;
+		get => _villageCapacity;
 		set
 		{
-			if (_unitCount == value)
+			if (_villageCapacity == value)
 			{
 				return;
 			}
 
-			_unitCount = value;
+			_villageCapacity = value;
+			DataChanged?.Invoke();
+		}
+	}
+
+
+	public Dictionary<string, UnitPool> WarriorPools
+	{
+		get => _warriorPools;
+		set
+		{
+			if (_warriorPools == value)
+			{
+				return;
+			}
+			_warriorPools = value;
 			DataChanged?.Invoke();
 		}
 	}

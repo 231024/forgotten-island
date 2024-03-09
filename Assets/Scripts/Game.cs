@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 
 	private void Start()
 	{
-		UniPrint();
+		// UniPrint();
 	}
 
 	private async void UniPrint()

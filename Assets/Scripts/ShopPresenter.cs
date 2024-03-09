@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShopPresenter : MonoBehaviour
@@ -11,7 +13,9 @@ public class ShopPresenter : MonoBehaviour
 
 	private void Start()
 	{
-		_model = new ShopModel(100, _factory.Pools.Count);
+
+		_model = new ShopModel(100, _factory.Pools, 20);
+
 		_model.DataChanged += ModelOnDataChanged;
 
 		_view.Refresh(_model);
@@ -40,10 +44,14 @@ public class ShopPresenter : MonoBehaviour
 
 	private void OnItemBought(string id)
 	{
-		_factory.GetProduct(id);
-
-		_model.DogCount--;
-		_model.Gold -= 20;
+		if(_factory.CheckSpaceForId(_model.VillageCapacity, id))
+		{
+			var product = _factory.GetProduct(id);
+			_model.VillageCapacity -= product.Weight;
+			Debug.Log(_model.VillageCapacity);
+			_model.Gold -= 20;
+		}
+		
 	}
 
 	private void OnViewCloseButtonClicked()
