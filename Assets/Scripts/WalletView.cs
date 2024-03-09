@@ -15,11 +15,13 @@ public class WalletView : MonoBehaviour
 			return;
 
 		_wallet = wallet;
-		
-		var item = Instantiate(_initialItem, _parent);
-		item.RefreshItem(wallet.Gold);
 
-		_items.Add(item);
+		foreach (var resource in _wallet.Resources)
+		{
+			var item = Instantiate(_initialItem, _parent);
+			item.RefreshItem(resource);
+			_items.Add(item);
+		}
 
 		_wallet.DataChanged += OnDataChanged;
 	}
@@ -31,6 +33,9 @@ public class WalletView : MonoBehaviour
 
 	private void OnDataChanged()
 	{
-		_items[0].RefreshItem(_wallet.Gold);
+		for (int i = 0, length = _wallet.Resources.Length; i < length; i++)
+		{
+			_items[i].RefreshItem(_wallet.Resources[i]);
+		}
 	}
 }

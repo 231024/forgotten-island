@@ -48,7 +48,7 @@ public class ShopPresenter : MonoBehaviour
 		if (!_factory.CheckSpaceForId(_shopModel.VillageCapacity, id))
 			return;
 
-		if (!_walletPresenter.WithdrawGold(ItemPrice))
+		if (!_walletPresenter.TryWithdrawGold(ItemPrice))
 			return;
 
 		var product = _factory.GetProduct(id);

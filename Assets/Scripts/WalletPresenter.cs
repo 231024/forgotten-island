@@ -13,5 +13,5 @@ public class WalletPresenter : MonoBehaviour
 		_walletView.Fill(_model);
 	}
 
-	public bool WithdrawGold(int amount) => _model.WithdrawGold(amount);
+	public bool TryWithdrawGold(int amount) => _model.TryWithdrawGold(amount);
 }

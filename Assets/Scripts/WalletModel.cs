@@ -2,6 +2,8 @@ using System;
 
 public class WalletModel
 {
+	// todo add other resources
+	public int[] Resources => new[] { Gold };
 	public event Action DataChanged;
 
 	private int _gold;
@@ -26,7 +28,7 @@ public class WalletModel
 		}
 	}
 
-	public bool WithdrawGold(int amount)
+	public bool TryWithdrawGold(int amount)
 	{
 		if (Gold < amount)
 			return false;
