@@ -1,47 +1,50 @@
 using System;
 using System.Collections.Generic;
 
-public class ShopModel
+namespace Shop
 {
-	private int _villageCapacity;
-	private Dictionary<string, UnitPool> _warriorPools;
-
-	public ShopModel(Dictionary<string, UnitPool> warriorPools, int villageCapacity)
+	public class ShopModel
 	{
-		_warriorPools = warriorPools;
-		_villageCapacity = villageCapacity;
-	}
+		private int _villageCapacity;
+		private Dictionary<string, UnitPool> _warriorPools;
 
-	public int VillageCapacity
-	{
-		get => _villageCapacity;
-		set
+		public ShopModel(Dictionary<string, UnitPool> warriorPools, int villageCapacity)
 		{
-			if (_villageCapacity == value)
-			{
-				return;
-			}
-
-			_villageCapacity = value;
-			DataChanged?.Invoke();
+			_warriorPools = warriorPools;
+			_villageCapacity = villageCapacity;
 		}
-	}
 
-
-	public Dictionary<string, UnitPool> WarriorPools
-	{
-		get => _warriorPools;
-		set
+		public int VillageCapacity
 		{
-			if (_warriorPools == value)
+			get => _villageCapacity;
+			set
 			{
-				return;
+				if (_villageCapacity == value)
+				{
+					return;
+				}
+
+				_villageCapacity = value;
+				DataChanged?.Invoke();
 			}
-
-			_warriorPools = value;
-			DataChanged?.Invoke();
 		}
-	}
 
-	public event Action DataChanged;
+
+		public Dictionary<string, UnitPool> WarriorPools
+		{
+			get => _warriorPools;
+			set
+			{
+				if (_warriorPools == value)
+				{
+					return;
+				}
+
+				_warriorPools = value;
+				DataChanged?.Invoke();
+			}
+		}
+
+		public event Action DataChanged;
+	}
 }

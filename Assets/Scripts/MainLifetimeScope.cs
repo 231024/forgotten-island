@@ -12,7 +12,5 @@ public class MainLifetimeScope : LifetimeScope
 	{
 		builder.RegisterComponent(_factory);
 		builder.RegisterComponent(_menuController);
-
-		builder.Register<ClipboardPresenter>(Lifetime.Singleton).AsImplementedInterfaces();
 	}
 }

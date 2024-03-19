@@ -1709,9 +1709,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535ae8a3d52034f13bddf1ef2ca99ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _squadsPrefab: {fileID: 1073600267490096580, guid: 0ab15bdd34f684c078eaf9b3bbad4445,
-    type: 3}
+  _prefab: {fileID: 1073600267490096580, guid: 0ab15bdd34f684c078eaf9b3bbad4445, type: 3}
   _parent: {fileID: 820184149}
+  _menuController: {fileID: 820184150}
+  _factory: {fileID: 1717570382}
 --- !u!114 &208550635
 MonoBehaviour:
   m_ObjectHideFlags: 0

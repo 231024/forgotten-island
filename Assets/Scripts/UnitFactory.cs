@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Shop;
 using UnityEngine;
 
 public class UnitFactory : Factory

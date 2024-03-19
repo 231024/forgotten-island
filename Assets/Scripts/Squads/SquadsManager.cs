@@ -5,83 +5,85 @@ using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
-public abstract class SquadsManager : IInitializable, ITickable, IDisposable
+namespace Squads
 {
-	private readonly Ground[] _grounds;
-	private readonly Dictionary<string, List<IProduct>> _squads = new();
-	private readonly Tree[] _trees;
-
-	[Inject] private ClipboardPresenter _clipboard;
-
-	private List<IProduct> _currentSquad = new();
-	[Inject] private SignalBus _signalBus;
-
-	public SquadsManager()
+	public class SquadsManager : IInitializable, ITickable, IDisposable
 	{
-		UnitPool.EventInstantiate += OnEventInstantiate;
+		private readonly Ground[] _grounds;
+		private readonly Dictionary<string, List<IProduct>> _squads = new();
+		private readonly Tree[] _trees;
 
-		_grounds = Object.FindObjectsOfType<Ground>();
-		_trees = Object.FindObjectsOfType<Tree>();
+		[Inject] private ClipboardPresenter _clipboard;
+		private List<IProduct> _currentSquad = new();
+		[Inject] private SignalBus _signalBus;
 
-		foreach (var ground in _grounds)
+		public SquadsManager()
 		{
-			ground.GroundTouched += MoveTo;
-		}
+			UnitPool.EventInstantiate += OnEventInstantiate;
 
-		foreach (var tree in _trees)
-		{
-			tree.TreeTouched += MoveTo;
-		}
-	}
+			_grounds = Object.FindObjectsOfType<Ground>();
+			_trees = Object.FindObjectsOfType<Tree>();
 
-	public string[] KeysArray => new List<string>(_squads.Keys).ToArray();
-
-	public void Dispose()
-	{
-	}
-
-	public void Initialize()
-	{
-	}
-
-	public void Tick()
-	{
-		Debug.Log("Manager");
-	}
-
-	private void MoveTo(Vector3 pos)
-	{
-		foreach (var unit in _currentSquad)
-		{
-			unit.MoveTo(pos);
-		}
-	}
-
-	private void OnEventInstantiate(string id, IProduct product)
-	{
-		if (!_squads.ContainsKey(id))
-		{
-			var list = new List<IProduct> { product };
-			_squads.Add(id, list);
-
-			_signalBus.Fire(new NewSquadMemberAddedSignal());
-		}
-		else
-		{
-			if (_squads[id].Contains(product))
+			foreach (var ground in _grounds)
 			{
-				return;
+				ground.GroundTouched += MoveTo;
 			}
 
-			_squads[id].Add(product);
-
-			_signalBus.Fire(new NewSquadMemberAddedSignal());
+			foreach (var tree in _trees)
+			{
+				tree.TreeTouched += MoveTo;
+			}
 		}
-	}
 
-	public void PickSquad(string id)
-	{
-		_clipboard.SetText($"Squad of {id} was picked");
-		_currentSquad = _squads[id];
+		public string[] KeysArray => new List<string>(_squads.Keys).ToArray();
+
+		public void Dispose()
+		{
+		}
+
+		public void Initialize()
+		{
+		}
+
+		public void Tick()
+		{
+			Debug.Log("Manager");
+		}
+
+		private void MoveTo(Vector3 pos)
+		{
+			foreach (var unit in _currentSquad)
+			{
+				unit.MoveTo(pos);
+			}
+		}
+
+		private void OnEventInstantiate(string id, IProduct product)
+		{
+			if (!_squads.ContainsKey(id))
+			{
+				var list = new List<IProduct> { product };
+				_squads.Add(id, list);
+
+				_signalBus.Fire(new NewSquadMemberAddedSignal());
+			}
+			else
+			{
+				if (_squads[id].Contains(product))
+				{
+					return;
+				}
+
+				_squads[id].Add(product);
+
+				_signalBus.Fire(new NewSquadMemberAddedSignal());
+			}
+		}
+
+		public void PickSquad(string id)
+		{
+			_clipboard.SetText($"Squad of {id} was picked");
+			_currentSquad = _squads[id];
+		}
 	}
 }

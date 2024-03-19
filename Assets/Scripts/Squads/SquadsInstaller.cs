@@ -13,7 +13,7 @@ namespace Squads
 
 			Container.BindInterfacesAndSelfTo<Calculator>().AsSingle().NonLazy();
 			Container.BindInterfacesAndSelfTo<SquadsManager>().AsSingle().NonLazy();
-			Container.Bind<SquadsController>().FromComponentOnRoot();
+			Container.Bind<SquadsController>().FromComponentOn(gameObject).AsTransient();
 		}
 	}
 }

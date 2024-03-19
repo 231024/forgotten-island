@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Squads
 {
 	public class SquadsController : MonoBehaviour
 	{
-		[FormerlySerializedAs("_viewSquads")] [SerializeField]
-		private SquadsView _squadsView;
+		[SerializeField] private SquadsView _squadsView;
 
 		[Inject] private SquadsManager _manager;
 		[Inject] private SignalBus _signalBus;

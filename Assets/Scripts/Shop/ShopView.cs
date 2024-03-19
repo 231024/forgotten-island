@@ -1,44 +1,47 @@
 using System;
 using UnityEngine;
 
-public class ShopView : MonoBehaviour
+namespace Shop
 {
-	[SerializeField] private ShopItem _initialItem;
-	[SerializeField] private RectTransform _parent;
-
-	public void Refresh(ShopModel model)
+	public class ShopView : MonoBehaviour
 	{
-		for (var i = 0; i < _parent.childCount; i++)
+		[SerializeField] private ShopItem _initialItem;
+		[SerializeField] private RectTransform _parent;
+
+		public void Refresh(ShopModel model)
 		{
-			var element = _parent.GetChild(i);
-			if (element.gameObject.activeSelf)
+			for (var i = 0; i < _parent.childCount; i++)
 			{
-				Destroy(element.gameObject);
+				var element = _parent.GetChild(i);
+				if (element.gameObject.activeSelf)
+				{
+					Destroy(element.gameObject);
+				}
+			}
+
+			foreach (var pool in model.WarriorPools)
+			{
+				var item = Instantiate(_initialItem, _parent);
+				item.gameObject.SetActive(true);
+				item.SetId(pool.Key);
+				item.SetBuyButtonText(pool.Key);
+				item.SetImage(pool.Value.Avatar);
+
+				item.SetCallback(OnItemBought);
 			}
 		}
 
-		foreach (var pool in model.WarriorPools)
+		public event Action CloseButtonClicked;
+		public event Action<string> ItemBought;
+
+		private void OnItemBought(string id)
 		{
-			var item = Instantiate(_initialItem, _parent);
-			item.gameObject.SetActive(true);
-			item.SetId(pool.Key);
-			item.SetBuyButtonText(pool.Key);
-			item.SetImage(pool.Value.Avatar);
-
-			item.SetCallback(OnItemBought);
+			ItemBought?.Invoke(id);
 		}
-	}
 
-	public event Action CloseButtonClicked;
-	public event Action<string> ItemBought;
-
-	private void OnItemBought(string id)
-	{
-		ItemBought?.Invoke(id);
-	}
-
-	public void OnCloseButtonClick()
-	{
-		CloseButtonClicked?.Invoke();
+		public void OnCloseButtonClick()
+		{
+			CloseButtonClicked?.Invoke();
+		}
 	}
 }

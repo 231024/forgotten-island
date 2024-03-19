@@ -1,12 +1,9 @@
-using System;
 using UnityEngine;
-using VContainer.Unity;
 using Zenject;
-using ITickable = VContainer.Unity.ITickable;
 
 namespace Clipboard
 {
-	public class ClipboardPresenter : IStartable, ITickable, IDisposable
+	public class ClipboardPresenter : VContainer.Unity.IStartable
 	{
 		private readonly IClipboard _clipboard;
 
@@ -16,17 +13,9 @@ namespace Clipboard
 			_clipboard = clipboard;
 		}
 
-		public void Dispose()
-		{
-		}
-
 		public void Start()
 		{
-		}
-
-		public void Tick()
-		{
-			Debug.Log("Clipboard");
+			Debug.Log("Clipboard started");
 		}
 
 		public void SetText(string str)

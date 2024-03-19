@@ -1,3 +1,4 @@
+using Shop;
 using Squads;
 using UnityEngine;
 using VContainer;

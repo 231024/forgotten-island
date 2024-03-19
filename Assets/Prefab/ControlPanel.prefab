@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 560111350ca947f4486e880ce08890be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewSquads: {fileID: 6083200371625055688}
+  _squadsView: {fileID: 6083200371625055688}
 --- !u!114 &6083200371625055688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c90f3914f0294038a76d81b67447bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _controller: {fileID: 1073600267490096580}
