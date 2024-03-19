@@ -1,19 +1,17 @@
 using System;
 using UnityEngine;
+using Wallet;
 
 public class ShopPresenter : MonoBehaviour
 {
+	private const int ItemPrice = 20;
+	private const int VillageCapacity = 20;
 	[SerializeField] private ShopView _view;
 
 	private UnitFactory _factory;
-	private WalletPresenter _walletPresenter;
 
 	private ShopModel _shopModel;
-
-	private const int ItemPrice = 20;
-	private const int VillageCapacity = 20;
-
-	public event Action<string> ItemBought;
+	private WalletPresenter _walletPresenter;
 
 	private void Start()
 	{
@@ -32,11 +30,17 @@ public class ShopPresenter : MonoBehaviour
 		_view.ItemBought -= OnItemBought;
 	}
 
-	public void Inject(UnitFactory factory) =>
-		_factory = factory;
+	public event Action<string> ItemBought;
 
-	public void Inject(WalletPresenter walletPresenter) =>
+	public void Inject(UnitFactory factory)
+	{
+		_factory = factory;
+	}
+
+	public void Inject(WalletPresenter walletPresenter)
+	{
 		_walletPresenter = walletPresenter;
+	}
 
 	private void ModelOnDataChanged()
 	{
@@ -46,10 +50,14 @@ public class ShopPresenter : MonoBehaviour
 	private void OnItemBought(string id)
 	{
 		if (!_factory.CheckSpaceForId(_shopModel.VillageCapacity, id))
+		{
 			return;
+		}
 
 		if (!_walletPresenter.TryWithdrawGold(ItemPrice))
+		{
 			return;
+		}
 
 		var product = _factory.GetProduct(id);
 		_shopModel.VillageCapacity -= product.Weight;

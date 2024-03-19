@@ -1,4 +1,7 @@
-public interface IObserver
+namespace Radio
 {
-	public void HandleEvent(float value);
+	public interface IObserver
+	{
+		public void HandleEvent(float value);
+	}
 }

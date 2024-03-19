@@ -5,8 +5,6 @@ public class Ground : MonoBehaviour
 {
 	[SerializeField] private Unit _player;
 
-	public event Action<Vector3> GroundTouched ;
-
 	private void OnMouseDown()
 	{
 		var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -14,4 +12,6 @@ public class Ground : MonoBehaviour
 		Physics.Raycast(ray, out hit);
 		GroundTouched?.Invoke(hit.point);
 	}
+
+	public event Action<Vector3> GroundTouched;
 }

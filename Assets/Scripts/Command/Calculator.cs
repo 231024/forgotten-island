@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Command
 {
-	public class Calculator
+	public class Calculator : ITickable
 	{
-		private Stack<ICommand<double>> _commandHistory = new();
+		private readonly Stack<ICommand<double>> _commandHistory = new();
 
 		private double _currentValue;
+
 		private double CurrentValue
 		{
 			get => _currentValue;
@@ -16,6 +18,11 @@ namespace Command
 				_currentValue = value;
 				Debug.Log($"CALCULATOR: {_currentValue}");
 			}
+		}
+
+		public void Tick()
+		{
+			Debug.Log("Calculator");
 		}
 
 		public void ExecuteCommand(ICommand<double> command)

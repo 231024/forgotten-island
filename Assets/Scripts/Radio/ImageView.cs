@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageView : MonoBehaviour, IObserver
+namespace Radio
 {
-	[SerializeField] private Image _image;
-
-	public void HandleEvent(float value)
+	public class ImageView : MonoBehaviour, IObserver
 	{
-		_image.fillAmount = value / 100.0f;
+		[SerializeField] private Image _image;
+
+		public void HandleEvent(float value)
+		{
+			_image.fillAmount = value / 100.0f;
+		}
 	}
 }

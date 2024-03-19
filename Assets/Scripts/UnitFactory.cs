@@ -22,17 +22,6 @@ public class UnitFactory : Factory
 
 	public bool CheckSpaceForId(int capacity, string id)
 	{
-		var product = Pools[id].Get();
-
-		if(product.Weight > capacity)
-		{
-			Pools[id].Release(product);
-			return false;
-		}
-		else
-		{
-			Pools[id].Release(product);
-			return true;
-		}
+		return _config.Entries.Find(entry => entry.ID.Equals(id)).Weight <= capacity;
 	}
 }

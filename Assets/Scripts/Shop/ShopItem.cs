@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +33,7 @@ public class ShopItem : MonoBehaviour
 		_price.text = value;
 	}
 
-		public void SetImage(Sprite value)
+	public void SetImage(Sprite value)
 	{
 		_icon.sprite = value;
 	}

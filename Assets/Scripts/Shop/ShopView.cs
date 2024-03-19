@@ -8,7 +8,6 @@ public class ShopView : MonoBehaviour
 
 	public void Refresh(ShopModel model)
 	{
-
 		for (var i = 0; i < _parent.childCount; i++)
 		{
 			var element = _parent.GetChild(i);
